@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part-blogger :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<br>
+					<div
+						style="text-align: center; color: #17a2b8; font-weight: bold; text-transform: uppercase; font-size: 17px;">
+						<span th:if="${page}=='newsfeed'">News Feed</span>
+						<span th:if="${page}=='timeline'">Timeline</span>
+					</div>
+					<div th:each="post : ${posts}">
+						<p style="font-weight: 600;padding-left: 3px;">
+                <i style="color: #17a2b8;" class="fa fa-user"></i> <span style="font-weight: 600;color: #17a2b8;"> [[${post.user.username}]]</span>
+                <span style="float: right;color: #17a2b8;"><i style="color: #17a2b8;" class="fa fa-calendar-check-o"></i> Posted At : [[${#temporals.format(post.time, 'dd-MM-yyyy HH:mm:ss')}]]</span></p>
+            <p style="font-weight: 600;padding-left: 3px;display: inline-block;color: #17a2b8;"><i class="fa fa-calendar"></i> <span> [[${post.title}]] </span></p>
+            
+            <form th:if="${user.id==post.user.id}" th:action="@{/blogger/deletepost}" method="post" style="display: inline-block;float: right;">
+            	<input type="hidden" name="page" th:value="${page}">
+            	<input type="hidden" name="postId" th:value="${post.id}">
+            	<button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete Post</button>
+            </form>
+            <a th:href="@{/blogger/comments(id=${post.id})}" style="color: #4e4e4e;text-decoration: none;padding-left: 3px;display: block;">[[${post.details}]]</a>
+            <div style="margin-top: 10px;font-weight: 600">
+            
+            <a th:if="${post.isLikedPost(user)}" style="margin-right: 5px;;display: inline-block;vertical-align: middle;text-decoration: none;color: #17a2b8;"><i class="fa fa-thumbs-up"></i> Liked</a>
+            <form th:if="${!post.isLikedPost(user)}" th:action="@{like}" method="post" style="display: inline-block;margin-right: 5px;">
+            	<input type="hidden" name="page" th:value="${page}">
+            	<input type="hidden" name="postId" th:value="${post.id}">
+            	<button style="outline:none;border: none;color: #4e4e4e;background: none;font-weight: 600;border-style: none;padding: 0px;"><i class="fa fa-thumbs-up"></i> Like</button>
+            </form>
+<!--             <a th:if="${!post.isLikeOwnPost()}" style="margin-right: 5px;;display: inline-block;vertical-align: middle;cursor: pointer;text-decoration: none;color: #4e4e4e;"><i class="fa fa-like"></i> Like</a> -->
+            <a th:href="@{/blogger/viewreacteduser(id=${post.id})}" style="display: inline-block;cursor: pointer;text-decoration: none;"><span th:if="${post.isLikedPost(user)}" style="color: #17a2b8;"> (You & [[${post.totalLike()}-1]] others)</span><span th:if="${!post.isLikedPost(user)}" style="color: #4e4e4e;"> ( [[${post.totalLike()}]] )</span></a>            
+            <a th:if="${post.isDislikedPost(user)}" style="margin-left: 35px;;margin-right: 5px;;color:#17a2b8;display: inline-block;text-decoration: none;"><i class="fa fa-thumbs-down"></i> Disliked</a>
+			<form th:if="${!post.isDislikedPost(user)}" th:action="@{dislike}" method="post" style="display: inline-block;margin-left: 35px;margin-right: 5px;">
+            	<input type="hidden" name="page" th:value="${page}">
+            	<input type="hidden" name="postId" th:value="${post.id}">
+            	<button style="outline:none;border: none;color: #4e4e4e;background: none;font-weight: 600;border-style: none;padding: 0px;"><i class="fa fa-thumbs-down"></i> Dislike</button>
+            </form>
+<!--             <a th:if="${!post.isDislikeOwnPost()}" style="margin-left: 35px;;margin-right: 5px;color:#4e4e4e;display: inline-block;vertical-align: middle;cursor: pointer;text-decoration: none;"><i class="fa fa-dislike"></i> Dislike</a> -->
+            <a th:href="@{/blogger/viewreacteduser(id=${post.id})}" style="display: inline-block;cursor: pointer;text-decoration: none;color: #4e4e4e;"><span th:if="${post.isDislikedPost(user)}" style="color: #17a2b8;"> ( You & [[${post.totalDislike()}-1]] others)</span><span th:if="${!post.isDislikedPost(user)}" style="4e4e4e"> ( [[${post.totalDislike()}]] )</span></a>
+            <a th:href="@{/blogger/comments(id=${post.id})}" style="margin-left: 50px;display: inline-block;cursor: pointer;text-decoration: none;color:#17a2b8"><i style="margin-top: 2px;" class="fa fa-comment"></i> <span style="vertical-align: top;"> Total Comments ( [[${post.comments.size()}]] )</span></a>
+            </div>
+            <hr>
+					</div>
+				</div>
+			</main>
+			<br>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<img th:src="@{/image/blog_img.png}" style="width: 100%; height: 534px">
+			</main>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

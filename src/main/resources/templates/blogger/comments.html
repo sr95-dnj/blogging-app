@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part-blogger :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<br>
+					<p style="color: #17a2b8; font-weight: bold;">
+						<i class="fa fa-user"></i> <span> [[${post.user.username}]]</span>
+					</p>
+					<p style="color: #17a2b8; font-weight: bold;">
+						<i style="color: #17a2b8;" class="fa fa-book"></i> <span>
+							[[${post.title}]] </span> <span style="float: right;"><i
+							class="fa fa-calendar-check-o"></i> Posted At :[[${#temporals.format(post.time, 'dd-MM-yyyy HH:mm:ss')}]]</span>
+					</p>
+					<p style="color: #000;">[[${post.details}]]</p>
+					<div style="margin-bottom: 15px; font-weight: bold;">
+						<p style="color: #17a2b8; display: inline-block;">
+							<i class="fa fa-comment"></i> All comments (
+							[[${post.comments.size()}]] )
+						</p>
+					</div>
+					<div style="margin-left: 90px;">
+						<div th:each="cmnt : ${comments}">
+							<p style="color: #17a2b8;">
+								<i class="fa fa-user"></i> <span style="font-weight: 600;">
+									[[${cmnt.user.username}]]</span> <span
+									style="float: right; color: #17a2b8; font-weight: bold;"><i
+									style="color: #17a2b8;" class="fa fa-calendar-check-o"></i>
+									Comment At :[[${cmnt.time}]]</span> <a th:if="${cmnt.user.id==user.id}"
+									th:href="@{removecomment(id=${cmnt.id})}"
+									style="display: inline-block; margin-right: 30px; float: right;color:red;font-weight: 600;"><i
+									class="fa fa-trash"></i> Remove Comment</a>
+							</p>
+							<p>[[${cmnt.details}]]</p>
+							<hr>
+						</div>
+						<form th:action="@{comments}" th:object="${comment}" method="post">
+							<input type="hidden" name="postId" th:value="${post.id}">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-comment"></i></span>
+								</div>
+								<textarea
+									style="resize: none; max-width: 100%; max-height: 100px; min-height: 100px;"
+									required type="text" class="form-control" th:field="*{details}"
+									placeholder="Your Comment..."></textarea>
+							</div>
+							<br>
+							<div class="input-group">
+								<button style="width: 100px;" type="submit" class="btn btn-info">
+									<i class="fa fa-send"></i> Submit
+								</button>
+							</div>
+						</form>
+						<br>
+					</div>
+				</div>
+			</main>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

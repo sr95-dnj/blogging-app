@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part-blogger :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid" align="center">
+					<br>
+					<div style="margin: 0 auto; width: 583px;">
+						<div
+							style="text-align: center; color: #17a2b8; font-weight: bold; text-transform: uppercase; font-size: 17px;">
+							<span>WRITE YOUR POST</span>
+						</div>
+						<br />
+						<form th:action="@{createpost}" method="post"
+							style="text-align: center;" th:object="${post}">
+							<div class="alert alert-info" th:if="${msg}" th:utext="${msg}"></div>
+
+							<label style="float: left; color: #17a2b8;">Title</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-user"></i></span>
+								</div>
+								<input th:field="*{title}" required type="text"
+									class="form-control" />
+							</div>
+							<br> <label style="float: left; color: #17a2b8;">Add
+								Your Post here</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-user"></i></span>
+								</div>
+								<textarea
+									style="resize: none; max-width: 545px; max-height: 190px; min-height: 190px; min-width: 545px;"
+									required type="text" class="form-control" th:field="*{details}"
+									 placeholder="Your opinion"></textarea>
+							</div>
+							<br>
+							<div class="input-group">
+								<button style="width: 120px;" type="submit" class="btn btn-info">
+									<i class="fa fa-send"></i> Share
+								</button>
+							</div>
+							<br>
+						</form>
+					</div>
+				</div>
+			</main>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

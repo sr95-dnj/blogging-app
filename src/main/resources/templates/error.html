@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body
+	style="font-family: serif; color: #fff; width: 100%; background-color: #000">
+	<div class="container" align="center">
+		<h1 style="margin-top: 80px;">[[${status}]]</h1>
+		<hr style="background-color: #fff;" />
+		<h4 style="margin-top: 40px; margin-bottom: 20px;">Trying for Invalid Request..!!</h4>
+		<h5 style="margin-top: 40px; margin-bottom: 20px;">[[${message}]]</h5>
+		<a style="text-decoration: underline; font-size: 18px;" th:href="@{/}">Back
+			to Home</a>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<br />
+					<form action="#" th:action="@{adduser}" method="post" th:object="${user}"
+						style="width: 100%;">
+						<div style="display: inline-block; margin-right: 30px; width: 30%">
+							<div class="input-group">
+								<label style="width:110px; margin-top: 5px;">
+									User Name(*)</label>
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-user"></i></span>
+								</div>
+								<input th:field="*{username}" required type="text" minlength="4" maxlength="15"
+									class="form-control"/>
+							</div>
+							<br>
+							<div class="input-group">
+								<label style="width:110px; margin-top: 5px;">
+									Password(*)</label>
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-lock"></i></span>
+								</div>
+								<input required type="password" minlength="4" maxlength="15"
+									class="form-control" th:field="*{password}"/>
+							</div>
+						</div>
+						<div style="display: inline-block; width: 30%;">
+							<div class="input-group">
+								<label style="width:100px; margin-top: 5px;">*
+									Email(*)</label>
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-envelope"></i></span>
+								</div>
+								<input required type="email" class="form-control"
+									th:field="*{email}"/>
+							</div>
+							<br>
+							<div class="input-group">
+								<label style="width:100px; margin-top: 5px;">User
+									Role *</label>
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i
+										class="fa fa-certificate"></i></span>
+								</div>
+								<select class="form-control" th:field="*{role}">
+									<option value="ROLE_ADMIN">Admin</option>
+									<option value="ROLE_BLOGGER">Blogger</option>
+								</select>
+							</div>
+						</div>
+						<br> <br>
+						<div class="form-group">
+							<button style="width: 150px" type="submit" class="btn btn-info"
+								name="update">
+								<i class="fa fa-save" style="margin-right: 5px;"></i> Add User
+							</button>
+						</div>
+					</form>
+					<br>
+					<table id="usertable"
+						class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr align="center">
+								<th>ID</th>
+								<th>User Name</th>
+								<th>Email</th>
+								<th>Role</th>
+								<th>Created At</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user : ${users}">
+								<td th:text="${user.id}"></td>
+								<td th:text="${user.username}"></td>
+								<td th:text="${user.email}"></td>
+								<td th:text="${user.role}"></td>
+								<td th:text="${user.time}"></td>
+								<td><a class="btn btn-danger"
+									th:href="@{deactivateuser(id=${user.id})}"><i
+										style="margin-right: 5px;" class="fa fa-user-times"></i> Deactivate</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+				</div>
+			</main>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#usertable').DataTable();
+		});
+	</script>
+</body>
+</html>

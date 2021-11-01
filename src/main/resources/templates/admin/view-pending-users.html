@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<br />
+					<table id="usertable"
+						class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr align="center">
+								<th>ID</th>
+								<th>User Name</th>
+								<th>Email</th>
+								<th>Role</th>
+								<th>Created At</th>
+								<th>Action</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user : ${users}">
+								<td th:text="${user.id}"></td>
+								<td th:text="${user.username}"></td>
+								<td th:text="${user.email}"></td>
+								<td th:text="${user.role}"></td>
+								<td th:text="${user.time}"></td>
+								<td><a class="btn btn-info"
+									th:href="@{approveuser(id=${user.id})}"><i
+										style="margin-right: 5px;" class="fa fa-address-card"
+										aria-hidden="true"></i> Approve User</a></td>
+								<td><a class="btn btn-danger"
+									th:href="@{rejectuser(id=${user.id})}"><i
+										style="margin-right: 5px;" class="fa fa-user-times"
+										aria-hidden="true"></i> Reject User</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+				</div>
+			</main>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#usertable').DataTable();
+		});
+	</script>
+</body>
+</html>

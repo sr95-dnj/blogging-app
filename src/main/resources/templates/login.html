@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="common/part :: header1" />
+<body
+	style="font-family: serif; color: #fff; width: 100%; background-color: #559c78">
+	<div class="container" align="center">
+		<br />
+		<h3>Blogging App</h3>
+		<hr style="background-color: #fff; font-weight: bold" />
+		<form th:action="@{/login}" method="post"
+			style="background-color: #559c78; width: 450px; padding: 15px">
+			<img th:src="@{/image/couple-user.png}" style="width: 200px; height: 200px;">
+			<div class="input-group" style="margin-top: 10px">
+				<h5 style="width: 100%;">Welcome Please Login</h5>
+			</div>
+			<div style="margin-top: 10px">
+				<div class="alert alert-info" th:if="${param.logout}">You have
+					been logged out.</div>
+				<div class="alert alert-danger" th:if="${param.error}">The
+					username or password is incorrect!</div>
+			</div>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i
+						class="fa fa-user"></i></span>
+				</div>
+				<input required maxlength="10" minlength="4" type="text"
+					class="form-control" name="username" id="username"
+					placeholder="Username : " />
+			</div>
+			<br />
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i
+						class="fa fa-lock"></i></span>
+				</div>
+				<input required maxlength="8" minlength="4" type="password"
+					class="form-control" name="password" id="password1"
+					placeholder="Password : " />
+			</div>
+			<br />
+			<div class="input-group">
+				<button style="width: 420px" name="login" type="submit"
+					class="btn btn-danger">
+					<i style="margin-right: 5px;" class="fa fa-sign-in"
+						aria-hidden="true"></i> Login
+				</button>
+			</div>
+			<br />
+			<div class="input-group">
+				<a style="color: white; width: 100%;" th:href="@{/registration}">Not
+					register yet? Click here to Register</a>
+			</div>
+		</form>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="common/part :: header1" />
+<body
+	style="font-family: serif; color: white; background-color: #002636;">
+	<div class="container" align="center">
+		<br>
+		<h3>Blogging App</h3>
+		<hr style="background-color: #fff;" />
+		<form th:action="@{/registration}" method="post" th:object="${user}"
+			style="width: 394px;">
+			<img th:src="@{/image/u3.png}" style="width: 200px; height: 160px;margin-bottom: 10px">
+			<h5 style="color: white">Create New Account</h5>
+			<div style="margin-top: 5px">
+				<div class="alert alert-info" th:if="${msg}" th:utext="${msg}"></div>
+			</div>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i
+						class="fa fa-user"></i></span>
+				</div>
+				<input required type="text" minlength="4" maxlength="15"
+					class="form-control" th:field="*{username}" id="username"
+					placeholder="Username : " />
+			</div>
+			<br />
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i
+						class="fa fa-lock"></i></span>
+				</div>
+				<input required type="password" minlength="4" maxlength="15"
+					class="form-control" th:field="*{password}" id="password"
+					placeholder="Password : " />
+			</div>
+			<br />
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i
+						class="fa fa-envelope"></i></span>
+				</div>
+				<input required type="email" class="form-control"
+					th:field="*{email}" id="email" placeholder="Email : " />
+			</div>
+			<br/>
+			<div class="input-group">
+				<button name="register" style="width: 190px; margin-right: 14px;"
+					type="submit" class="btn btn-info">
+					<i class="fa fa-address-card"></i> Register
+				</button>
+				<a th:href="@{/login}" style="width: 190px" type="submit"
+					class="btn btn-danger"><i class="fa fa-sign-in"></i> Login</a>
+			</div>
+		</form>
+	</div>
+	<br>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

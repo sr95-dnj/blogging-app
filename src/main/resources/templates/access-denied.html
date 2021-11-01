@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body
+	style="font-family: serif; color: #fff; width: 100%; background-color: #000">
+	<div class="container" align="center">
+		<h1 style="margin-top: 80px;">Access Denied !!!!!!!!!!</h1>
+		<hr style="background-color: #fff;" />
+		<h3 style="margin-top: 40px; margin-bottom: 20px;">
+			You are not permitted to access this page.You have to login with
+			proper credential.
+			</h3>
+			<a
+				style="text-decoration: underline; font-size: 18px;"
+				th:href="@{/}">Back to Home</a>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>

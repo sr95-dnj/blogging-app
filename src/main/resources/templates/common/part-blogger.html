@@ -1,0 +1,31 @@
+<div th:fragment="header3" id="layoutSidenav_nav">
+	<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"
+		style="font-size: 17px;">
+		<div class="sb-sidenav-menu" style="background-color: #002636;">
+			<div class="nav">
+				<a class="nav-link" th:href="@{/blogger/newsfeed}"> <i
+					class="fa fa-calendar" aria-hidden="true"
+					style="margin-right: 5px;"></i> News Feed
+				</a> <a class="nav-link" th:href="@{/blogger/createpost}"><i
+					class="fa fa-pencil" aria-hidden="true" style="margin-right: 5px;"></i>
+					Create Post</a> <a class="nav-link" th:href="@{/blogger/pendingpost}">
+					<i class="fa fa-google-wallet" aria-hidden="true"
+					style="margin-right: 5px;"> Pending Posts</i>
+				</a> <a class="nav-link" th:href="@{/blogger/timeline}"> <i
+					class="fa fa-bar-chart" aria-hidden="true"
+					style="margin-right: 5px;"></i> Timeline
+				</a><a class="nav-link" th:href="@{/profile}"> <i
+					style="margin-right: 5px;" class="fa fa-user-circle"
+					aria-hidden="true"></i> Profile
+				</a>
+			</div>
+		</div>
+		<div class="sb-sidenav-footer" style="background-color: #004f6f">
+			<div class="nav">
+				<a style="color: #fff;" class="nav-link" th:href="@{/logout}"> <i
+					class="fa fa-sign-out"></i> Logout
+				</a>
+			</div>
+		</div>
+	</nav>
+</div>

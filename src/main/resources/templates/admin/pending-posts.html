@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/part :: header1" />
+<body class="sb-nav-fixed" style="font-family: serif;">
+	<nav th:replace="common/part :: header2"></nav>
+	<div id="layoutSidenav">
+		<div th:replace="common/part :: header3"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<br>
+					<div
+						style="text-align: center; color: #17a2b8; font-weight: bold; text-transform: uppercase; font-size: 17px;">
+						<span>Pending Posts</span>
+					</div>
+					<div th:each="post : ${posts}">
+						<p style="font-weight: 600;">
+							<i style="color: #17a2b8;" class="fa fa-user"></i> <span
+								style="font-weight: 600; color: #17a2b8;">
+								[[${post.user.username}]]</span> <span
+								style="float: right; color: #17a2b8;"><i
+								style="color: #17a2b8;" class="fa fa-calendar-check-o"></i> Posted At :
+								[[${#temporals.format(post.time, 'dd-MM-yyyy HH:mm:ss')}]]</span>
+						</p>
+
+						<p style="font-weight: 600;">
+							<i style="color: #17a2b8;" class="fa fa-star"></i> <span
+								style="color: #17a2b8; font-weight: bold;">
+								[[${post.title}]] </span> <a class="btn btn-sm btn-danger"
+								th:href="@{/admin/deletepost(id=${post.id})}"
+								style="display: inline-block; float: right;"><i
+								class="fa fa-times"></i> Reject Post</a> <a
+								class="btn btn-sm btn-info"
+								th:href="@{/admin/approvepost(id=${post.id})}"
+								style="display: inline-block; color: #fff; margin-right: 15px; float: right;"><i
+								class="fa fa-check"></i> Approve Post</a>
+
+						</p>
+						<a style="color: #4e4e4e; text-decoration: none">[[${post.details}]]</a>
+						<hr>
+					</div>
+				</div>
+			</main>
+			<br>
+			<footer th:replace="common/part :: header4"></footer>
+		</div>
+	</div>
+	<div th:replace="common/part :: header5"></div>
+</body>
+</html>
